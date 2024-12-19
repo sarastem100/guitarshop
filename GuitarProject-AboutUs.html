@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial;
+            padding: 10px;
+            background: white;
+        }
+
+        /* Header/Blog Title */
+        .header {
+            padding: 10px;
+            text-align: center;
+            background: darkblue;
+            color: white;
+            font-size: 17px;
+        }
+
+        /* Add a card effect for articles */
+        .card {
+            background-color: white;
+            padding: 20px;
+            margin-top: 20px;
+            position: absolute;
+            left: 20px;
+            transition: 1.5s;
+        }
+
+        /* Clear floats after the columns */
+        .row::after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 10px;
+            text-align: center;
+            margin-top: 10px;
+            position: absolute;
+            bottom: 0px;
+            width: 100%;
+
+            background: darkblue;
+            color: white;
+            font-size: 17px;
+        }
+
+        #menuButton {
+            transition: 1.5s;
+            position: absolute;
+        }
+
+        #menuButton:hover {
+            transform: rotate(180deg);
+        }
+
+        .boxes {
+            background: white;
+            width: 30px;
+            height: 5px;
+            transition: 2s;
+            margin-bottom: 20px;
+            position: absolute;
+        }
+
+        #box2 {
+            margin-top: 10px;
+        }
+
+        #box3 {
+            margin-top: 20px;
+        }
+
+        #mainButton {
+            height: 35px;
+            width: 60px;
+            transition: 2s;
+            padding: 5px;
+            position: absolute;
+            top:50px;
+            z-index: 1;
+        }
+
+        #menu {
+            background: darkblue;
+            width: 0px;
+            transition: 1.5s width;
+            visibility: hidden;
+            position: absolute;
+            margin-top: 125px;
+            z-index: 1;
+        }
+
+        .menuAnchorLinks {
+            color: white;
+            font-size: 17px;
+            margin-left: 10px;
+            text-decoration: none;
+        }
+
+        .menuAnchorLinks:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <script>
+        function menus() {
+            if (document.getElementById("menu").style.visibility == "hidden") {
+                document.getElementById("menu").style.visibility = "visible";
+                document.getElementById("menu").style.width = "200px";
+                document.getElementById("content").style.left = "200px";
+            }
+            else {
+                document.getElementById("menu").style.visibility = "hidden";
+                document.getElementById("menu").style.width = "0px";
+                document.getElementById("content").style.left = "20px";
+            }
+        }
+
+        function hideMenu() {
+            document.getElementById("menu").style.visibility = "hidden";
+            document.getElementById("menu").style.width = "0px";
+            document.getElementById("content").style.left = "20px";
+        }
+        function transform1() {
+            document.getElementById("box1").style.transform = "rotate(180deg)"
+            document.getElementById("box1").style.background = "white";
+
+            document.getElementById("box2").style.transform = "rotate(180deg)"
+            document.getElementById("box2").style.background = "white";
+
+            document.getElementById("box3").style.transform = "rotate(180deg)"
+            document.getElementById("box3").style.background = "white";
+
+        }
+
+        function transform2() {
+            document.getElementById("box1").style.transform = "rotate(0deg)"
+            document.getElementById("box1").style.background = "white";
+            document.getElementById("box2").style.transform = "rotate(0deg)"
+            document.getElementById("box2").style.background = "white";
+            document.getElementById("box3").style.transform = "rotate(0deg)"
+            document.getElementById("box3").style.background = "white";
+        }
+    </script>
+</head>
+
+<body onload="menus()">
+    <div id="mainButton" onmouseover="transform1()" onmouseout="transform2()" onclick="menus()">
+        <div id="box1" class="boxes"></div>
+        <div id="box2" class="boxes"></div>
+        <div id="box3" class="boxes"></div>
+    </div>
+    <div id="menu">
+        <a href="index.html" class="menuAnchorLinks">Home</a>
+        <br><br>
+        <a href="GuitarProject-Inventory.html" class="menuAnchorLinks">Shop All</a>
+        <br><br>
+        <a href="GuitarProject-AboutUs.html" class="menuAnchorLinks">About Us</a>
+        <br><br>
+        <a href="GuitarProject-FinancingApplication.html" class="menuAnchorLinks">Financing </a>
+        <br><br>
+    </div>
+
+    <div class="header" onclick="hideMenu()">
+        <div align="right">
+            <img src="images/guitarzonelogo.jpg" width="100px" height="100px">
+            <br>
+        </div>
+    </div>
+
+    <div class="row" onclick="hideMenu()">
+        <div class="card" id="content" style="overflow:auto; height:420px;">
+            <!--BODY ABOUT US SECTION -->
+            <img src="images/aboutusbackground.jpg" height="300px">
+            <h1>About Us </h1>
+        <p>Why does someone start a guitar products company in the first place? 
+            This company was started in 1967 by Tiffany Rocker to 
+	allow anyone who was interested in guitar to be able to buy and sell guitars. 
+    We wanted people to have one place for all their guitar needs.
+    In 1980 the company went global and opened a branch in Adelaide, Australia.
+    50% of our profits go towards helping children in third world countries.
+
+</p>		       
+
+
+        </div>
+    </div>
+
+    <div class="footer" onclick="hideMenu()">
+        <div align="left" padding="30px" style="float:left">
+            <b>ADDRESS:<br>Fountains on the Lake Plaza </b><br>
+            6001 Gulf Freeway, Building E<br>
+            Houston, TX 77023
+        </div>
+        <div align="right" style="padding-right:30px">
+            <b>CONTACT INFO</b><br>
+            <b>Telephone:</b> 713-967-6700<br>
+            <b>Fax:</b> 713-926-8035<br>
+            <b>Email: </b>info@guitarshop.com
+
+        </div>
+    </div>
+
+</body>
+
+</html>

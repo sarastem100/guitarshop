@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial;
+            padding: 10px;
+            background: white;
+        }
+
+        /* Header/Blog Title */
+        .header {
+            padding: 10px;
+            text-align: center;
+            background: darkblue;
+            color: white;
+            font-size: 17px;
+        }
+
+        /* Add a card effect for articles */
+        .card {
+            background-color: white;
+            padding: 20px;
+            margin-top: 20px;
+            position: absolute;
+            left: 20px;
+            transition: 1.5s;
+        }
+
+        /* Clear floats after the columns */
+        .row::after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 10px;
+            text-align: center;
+            margin-top: 10px;
+            position: absolute;
+            bottom: 0px;
+            width: 100%;
+
+            background: darkblue;
+            color: white;
+            font-size: 17px;
+        }
+
+        #menuButton {
+            transition: 1.5s;
+            position: absolute;
+        }
+
+        #menuButton:hover {
+            transform: rotate(180deg);
+        }
+
+        .boxes {
+            background: white;
+            width: 30px;
+            height: 5px;
+            transition: 2s;
+            margin-bottom: 20px;
+            position: absolute;
+        }
+
+        #box2 {
+            margin-top: 10px;
+        }
+
+        #box3 {
+            margin-top: 20px;
+        }
+
+        #mainButton {
+            height: 35px;
+            width: 60px;
+            transition: 2s;
+            padding: 5px;
+            position: absolute;
+            top:50px;
+            z-index: 1;
+        }
+
+        #menu {
+            background: darkblue;
+            width: 0px;
+            transition: 1.5s width;
+            visibility: hidden;
+            position: absolute;
+            margin-top: 125px;
+            z-index: 1;
+        }
+
+        .menuAnchorLinks {
+            color: white;
+            font-size: 17px;
+            margin-left: 10px;
+            text-decoration: none;
+        }
+
+        .menuAnchorLinks:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <script>
+        function menus() {
+            if (document.getElementById("menu").style.visibility == "hidden") {
+                document.getElementById("menu").style.visibility = "visible";
+                document.getElementById("menu").style.width = "200px";
+                document.getElementById("content").style.left = "200px";
+            }
+            else {
+                document.getElementById("menu").style.visibility = "hidden";
+                document.getElementById("menu").style.width = "0px";
+                document.getElementById("content").style.left = "20px";
+            }
+        }
+
+        function hideMenu() {
+            document.getElementById("menu").style.visibility = "hidden";
+            document.getElementById("menu").style.width = "0px";
+            document.getElementById("content").style.left = "20px";
+        }
+        function transform1() {
+            document.getElementById("box1").style.transform = "rotate(180deg)"
+            document.getElementById("box1").style.background = "white";
+
+            document.getElementById("box2").style.transform = "rotate(180deg)"
+            document.getElementById("box2").style.background = "white";
+
+            document.getElementById("box3").style.transform = "rotate(180deg)"
+            document.getElementById("box3").style.background = "white";
+
+        }
+
+        function transform2() {
+            document.getElementById("box1").style.transform = "rotate(0deg)"
+            document.getElementById("box1").style.background = "white";
+            document.getElementById("box2").style.transform = "rotate(0deg)"
+            document.getElementById("box2").style.background = "white";
+            document.getElementById("box3").style.transform = "rotate(0deg)"
+            document.getElementById("box3").style.background = "white";
+        }
+    </script>
+</head>
+
+<body onload="menus()">
+    <div id="mainButton" onmouseover="transform1()" onmouseout="transform2()" onclick="menus()">
+        <div id="box1" class="boxes"></div>
+        <div id="box2" class="boxes"></div>
+        <div id="box3" class="boxes"></div>
+    </div>
+    <div id="menu">
+        <a href="index.html" class="menuAnchorLinks">Home</a>
+        <br><br>
+        <a href="GuitarProject-Inventory.html" class="menuAnchorLinks">Shop All</a>
+        <br><br>
+        <a href="GuitarProject-AboutUs.html" class="menuAnchorLinks">About Us</a>
+        <br><br>
+        <a href="GuitarProject-FinancingApplication.html" class="menuAnchorLinks">Financing </a>
+        <br><br>
+    </div>
+
+    <div class="header" onclick="hideMenu()">
+        <div align="right">
+            <img src="images/guitarzonelogo.jpg" width="100px" height="100px">
+            <br>
+        </div>
+    </div>
+
+    <div class="row" onclick="hideMenu()">
+        <div class="card" id="content">
+          <title>Financing Application</title>
+          <script type="text/javascript">
+              function calculate() {
+                  var principal = document.getElementById("principal").value;
+                  var rate = document.getElementById("rate").value;
+                  var time = document.getElementById("time").value;
+                  var interest = principal * Math.pow(1 + rate / 100, time);
+                  alert("You can borrow up to $" + interest.toFixed(2));
+                  document.getElementById("principal").value = "";
+                  document.getElementById("rate").value = "";
+                  document.getElementById("time").value = "";
+                  document.querySelectorAll('input[type="text"], input[type="number"], input[type="tel"]').forEach(input => input.value = '');
+              }
+          </script>
+<h1>Financing Application</h1>
+<form>
+  <label for="name">Name:</label><br>
+  <input type="text" id="name" name="name"><br>
+
+  <label for="address">Address:</label><br>
+  <input type="text" id="address" name="address"><br>
+
+  <label for="phone">Phone Number:</label><br>
+  <input type="tel" id="phone" name="phone"><br>
+
+  <label for="ssn">Social Security Number:</label><br>
+  <input type="text" id="ssn" name="ssn"><br>
+
+  <label for="principal">How much do you want to borrow?</label><br>
+  <input type="number" id="principal" name="principal"><br>
+
+  <label for="rate">Interest Rate:</label><br>
+  <input type="number" id="rate" name="rate"><br>
+
+  <label for="time">Time (in years):</label><br>
+  <input type="number" id="time" name="time"><br><br>
+
+  <input type="button" value="Submit" onclick="calculate()">
+  <input type="reset">
+</form>
+
+        </div>
+    </div>
+
+    <div class="footer" onclick="hideMenu()">
+        <div align="left" padding="30px" style="float:left">
+            <b>ADDRESS:<br>Fountains on the Lake Plaza </b><br>
+            6001 Gulf Freeway, Building E<br>
+            Houston, TX 77023
+        </div>
+        <div align="right" style="padding-right:30px">
+            <b>CONTACT INFO</b><br>
+            <b>Telephone:</b> 713-967-6700<br>
+            <b>Fax:</b> 713-926-8035<br>
+            <b>Email: </b>info@guitarshop.com
+
+        </div>
+    </div>
+
+</body>
+
+</html>
